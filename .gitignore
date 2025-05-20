@@ -18,4 +18,4 @@ Thumbs.db
 *.dump
 
 # Postman collections (om du vill exkludera)
-*.postman_collection.json
+*.archangels_characters.postman_collection.json

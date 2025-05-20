@@ -1,0 +1,98 @@
+{
+  "info": {
+    "name": "Archangels Characters API",
+    "_postman_id": "a1e7c9c7-3f60-4f20-b312-archangels001",
+    "description": "CRUD for Archangels characters",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Get all Characters",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/characters",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["characters"]
+        }
+      }
+    },
+    {
+      "name": "Get Character by ID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/characters/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["characters", "1"]
+        }
+      }
+    },
+    {
+      "name": "Create New Character",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Partaqlus Half-Blood\",\n    \"title\": \"Primarch\",\n    \"race\": \"Astartes\",\n    \"faction\": \"Archangels\",\n    \"psyker\": true,\n    \"status\": \"Active\",\n    \"placement_id\": 1,\n    \"gear_id\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/characters",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["characters"]
+        }
+      }
+    },
+    {
+      "name": "Update Character by ID",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n    \"name\": \"Partaqlus Half-Blood\",\n    \"title\": \"Primarch\",\n    \"race\": \"Astartes\",\n    \"faction\": \"Archangels\",\n    \"psyker\": true,\n    \"status\": \"Wounded\",\n    \"placement_id\": 1,\n    \"gear_id\": 1\n}"
+        },
+        "url": {
+          "raw": "http://localhost:5000/characters/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["characters", "1"]
+        }
+      }
+    },
+    {
+      "name": "Delete Character by ID",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:5000/characters/1",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "5000",
+          "path": ["characters", "1"]
+        }
+      }
+    }
+  ]
+}
