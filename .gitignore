@@ -1,0 +1,21 @@
+# Node modules
+node_modules/
+
+# Miljövariabler
+.env
+
+# Loggar
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# OS-filer
+.DS_Store
+Thumbs.db
+
+# Eventuella databackups eller dumpfiler
+*.sql
+*.dump
+
+# Postman collections (om du vill exkludera)
+*.postman_collection.json
