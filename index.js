@@ -4,6 +4,7 @@ require('dotenv').config();
 const charactersRouter = require('./routes/characters');
 const placementRouter = require('./routes/placement');
 const gearRouter = require('./routes/gear');
+const squadsRouter = require('./routes/squads');
 const pool = require('./db');
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 // Koppla routern till din endpoint
 app.use('/characters', charactersRouter);
 app.use('/placement', placementRouter);
+app.use('/squads', squadsRouter);
 app.use('/gears', gearRouter);
 
 const port = process.env.PORT || 5000;
