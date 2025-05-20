@@ -2,7 +2,6 @@ const express = require('express');
 const cors = require('cors');
 require('dotenv').config();
 const charactersRouter = require('./routes/characters');
-const placementRouter = require('./routes/placement');
 const gearRouter = require('./routes/gear');
 const squadsRouter = require('./routes/squads');
 const pool = require('./db');
@@ -13,7 +12,6 @@ app.use(express.json());
 
 // Koppla routern till din endpoint
 app.use('/characters', charactersRouter);
-app.use('/placement', placementRouter);
 app.use('/squads', squadsRouter);
 app.use('/gears', gearRouter);
 

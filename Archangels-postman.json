@@ -1,97 +1,276 @@
 {
-  "name": "Squads",
+  "info": {
+    "name": "A-P",
+    "_postman_id": "a1e7c9c7-3f60-4f20-b312-archangels006",
+    "description": "CRUD för Characters (med specializt & nullable squad_id), Gears och Squads.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
   "item": [
     {
-      "name": "Get all Squads",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/squads",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["squads"]
-        }
-      }
-    },
-    {
-      "name": "Get Squad by ID",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/squads/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["squads", "1"]
-        }
-      }
-    },
-    {
-      "name": "Create New Squad",
-      "request": {
-        "method": "POST",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"name\": \"Paladins\",\n  \"company\": \"1st Company\",\n  \"specialization\": \"Terminator Assault\",\n  \"gear_id\": 1,\n  \"nr_missions\": 37\n}"
+      "name": "Characters",
+      "item": [
+        {
+          "name": "Get all Characters",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/characters",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["characters"]
+            }
+          }
         },
-        "url": {
-          "raw": "http://localhost:5000/squads",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["squads"]
-        }
-      }
-    },
-    {
-      "name": "Update Squad by ID",
-      "request": {
-        "method": "PUT",
-        "header": [{ "key": "Content-Type", "value": "application/json" }],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n  \"name\": \"Paladins\",\n  \"company\": \"1st Company\",\n  \"specialization\": \"Veteran Terminator Assault\",\n  \"gear_id\": 1,\n  \"nr_missions\": 38\n}"
+        {
+          "name": "Get Character by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/characters/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["characters", "1"]
+            }
+          }
         },
-        "url": {
-          "raw": "http://localhost:5000/squads/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["squads", "1"]
+        {
+          "name": "Get Character Details by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/characters/1/details",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["characters", "1", "details"]
+            }
+          }
+        },
+        {
+          "name": "Create New Character (specializt, optional squad_id)",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Androsia Fireborne\",\n  \"title\": \"Chief Librarian\",\n  \"race\": \"Astartes\",\n  \"faction\": \"Archangels\",\n  \"psyker\": true,\n  \"status\": \"Active\",\n  \"squad_id\": null,\n  \"gear_id\": 2,\n  \"specializt\": \"Psyker, Keeper of Lore\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/characters",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["characters"]
+            }
+          }
+        },
+        {
+          "name": "Update Character by ID (specializt, optional squad_id)",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Androsia Fireborne\",\n  \"title\": \"Chief Librarian\",\n  \"race\": \"Astartes\",\n  \"faction\": \"Archangels\",\n  \"psyker\": true,\n  \"status\": \"Wounded\",\n  \"squad_id\": null,\n  \"gear_id\": 2,\n  \"specializt\": \"Master Psyker, Keeper of Lore\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/characters/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["characters", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Character by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:5000/characters/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["characters", "1"]
+            }
+          }
         }
-      }
+      ]
     },
     {
-      "name": "Delete Squad by ID",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/squads/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["squads", "1"]
+      "name": "Gears",
+      "item": [
+        {
+          "name": "Get all Gears",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/gears",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["gears"]
+            }
+          }
+        },
+        {
+          "name": "Get Gear by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/gears/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["gears", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create New Gear",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sergeant's Loadout\",\n  \"weapons\": \"Power Sword, Bolt Pistol\",\n  \"armors\": \"MKVI Power Armor\",\n  \"special_equipment\": \"Jump Pack\",\n  \"relics_artifacts\": \"Halo of the Primarch\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/gears",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["gears"]
+            }
+          }
+        },
+        {
+          "name": "Update Gear by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Terminator Loadout\",\n  \"weapons\": \"Power Fist, Storm Bolter\",\n  \"armors\": \"Cataphractii Terminator Armor\",\n  \"special_equipment\": \"Teleport Homer\",\n  \"relics_artifacts\": \"Crux Terminatus\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/gears/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["gears", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Gear by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:5000/gears/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["gears", "1"]
+            }
+          }
         }
-      }
+      ]
     },
     {
-      "name": "Get Characters in Squad",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/squads/1/characters",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["squads", "1", "characters"]
+      "name": "Squads",
+      "item": [
+        {
+          "name": "Get all Squads",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/squads",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["squads"]
+            }
+          }
+        },
+        {
+          "name": "Get Squad by ID",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/squads/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["squads", "1"]
+            }
+          }
+        },
+        {
+          "name": "Create New Squad",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Paladins\",\n  \"company\": \"1st Company\",\n  \"specialization\": \"Terminator Assault\",\n  \"gear_id\": 1,\n  \"nr_missions\": 37\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/squads",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["squads"]
+            }
+          }
+        },
+        {
+          "name": "Update Squad by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Paladins\",\n  \"company\": \"1st Company\",\n  \"specialization\": \"Terminator Assault\",\n  \"gear_id\": 1,\n  \"nr_missions\": 38\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/squads/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["squads", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Squad by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:5000/squads/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["squads", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Characters in Squad",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/squads/1/characters",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["squads", "1", "characters"]
+            }
+          }
         }
-      }
+      ]
     }
   ]
 }

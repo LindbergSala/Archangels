@@ -80,4 +80,43 @@ router.get('/:id/characters', async (req, res) => {
   }
 });
 
+// GET detaljerad squad-info (inklusive gear och lista på medlemmar)
+router.get('/:id/details', async (req, res) => {
+  try {
+    // Först: hämta squad + gear
+    const squadResult = await pool.query(
+      `SELECT 
+        s.*, 
+        g.name AS gear_name, 
+        g.weapons, 
+        g.armors, 
+        g.special_equipment, 
+        g.relics_artifacts
+      FROM squads s
+      LEFT JOIN gears g ON s.gear_id = g.id
+      WHERE s.id = $1`,
+      [req.params.id]
+    );
+
+    if (squadResult.rows.length === 0) return res.status(404).json({ error: "Not found" });
+
+    // Sen: hämta alla karaktärer i squaden
+    const membersResult = await pool.query(
+      `SELECT id, name, title, race, faction, psyker, status, gear_id, specializt
+       FROM characters
+       WHERE squad_id = $1`,
+      [req.params.id]
+    );
+
+    // Bygg svar: squadinfo + array av members
+    const squadInfo = squadResult.rows[0];
+    squadInfo.members = membersResult.rows; // Lägg till en members-array
+
+    res.json(squadInfo);
+
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;
