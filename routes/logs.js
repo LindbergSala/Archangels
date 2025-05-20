@@ -2,20 +2,20 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../db');
 
-// GET alla logs
+// GET alla psychic powers
 router.get('/', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM logs');
+    const result = await pool.query('SELECT * FROM psychic_powers');
     res.json(result.rows);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
 });
 
-// GET log by ID
+// GET psychic power by ID
 router.get('/:id', async (req, res) => {
   try {
-    const result = await pool.query('SELECT * FROM logs WHERE id = $1', [req.params.id]);
+    const result = await pool.query('SELECT * FROM psychic_powers WHERE id = $1', [req.params.id]);
     if (result.rows.length === 0) return res.status(404).json({ error: "Not found" });
     res.json(result.rows[0]);
   } catch (err) {
@@ -23,14 +23,14 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// POST skapa ny log
+// POST skapa ny psychic power
 router.post('/', async (req, res) => {
-  const { entry_date, entry_title, entry_text, related_mission_id } = req.body;
+  const { power_name, description, type, character_id } = req.body;
   try {
     const result = await pool.query(
-      `INSERT INTO logs (entry_date, entry_title, entry_text, related_mission_id)
+      `INSERT INTO psychic_powers (power_name, description, type, character_id)
        VALUES ($1, $2, $3, $4) RETURNING *`,
-      [entry_date, entry_title, entry_text, related_mission_id]
+      [power_name, description, type, character_id]
     );
     res.json(result.rows[0]);
   } catch (err) {
@@ -38,13 +38,13 @@ router.post('/', async (req, res) => {
   }
 });
 
-// PUT uppdatera log
+// PUT uppdatera psychic power
 router.put('/:id', async (req, res) => {
-  const { entry_date, entry_title, entry_text, related_mission_id } = req.body;
+  const { power_name, description, type, character_id } = req.body;
   try {
     const result = await pool.query(
-      `UPDATE logs SET entry_date = $1, entry_title = $2, entry_text = $3, related_mission_id = $4 WHERE id = $5 RETURNING *`,
-      [entry_date, entry_title, entry_text, related_mission_id, req.params.id]
+      `UPDATE psychic_powers SET power_name = $1, description = $2, type = $3, character_id = $4 WHERE id = $5 RETURNING *`,
+      [power_name, description, type, character_id, req.params.id]
     );
     if (result.rows.length === 0) return res.status(404).json({ error: "Not found" });
     res.json(result.rows[0]);
@@ -53,12 +53,12 @@ router.put('/:id', async (req, res) => {
   }
 });
 
-// DELETE log
+// DELETE psychic power
 router.delete('/:id', async (req, res) => {
   try {
-    const result = await pool.query('DELETE FROM logs WHERE id = $1 RETURNING *', [req.params.id]);
+    const result = await pool.query('DELETE FROM psychic_powers WHERE id = $1 RETURNING *', [req.params.id]);
     if (result.rows.length === 0) return res.status(404).json({ error: "Not found" });
-    res.json({ message: "Deleted", log: result.rows[0] });
+    res.json({ message: "Deleted", power: result.rows[0] });
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
