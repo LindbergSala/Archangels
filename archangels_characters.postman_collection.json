@@ -1,98 +1,169 @@
 {
   "info": {
-    "name": "Archangels Characters API",
-    "_postman_id": "a1e7c9c7-3f60-4f20-b312-archangels001",
-    "description": "CRUD for Archangels characters",
+    "name": "Archangels API - Characters, Placement, Gears (med gear-namn)",
+    "_postman_id": "a1e7c9c7-3f60-4f20-b312-archangels003",
+    "description": "CRUD för Characters, Placement och Gears (nu med namn på gear)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
     {
-      "name": "Get all Characters",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/characters",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["characters"]
-        }
-      }
-    },
-    {
-      "name": "Get Character by ID",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/characters/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["characters", "1"]
-        }
-      }
-    },
-    {
-      "name": "Create New Character",
-      "request": {
-        "method": "POST",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
+      "name": "Characters",
+      "item": [
+        {
+          "name": "Get all Characters",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/characters", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters"] }
           }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"name\": \"Partaqlus Half-Blood\",\n    \"title\": \"Primarch\",\n    \"race\": \"Astartes\",\n    \"faction\": \"Archangels\",\n    \"psyker\": true,\n    \"status\": \"Active\",\n    \"placement_id\": 1,\n    \"gear_id\": 1\n}"
         },
-        "url": {
-          "raw": "http://localhost:5000/characters",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["characters"]
-        }
-      }
-    },
-    {
-      "name": "Update Character by ID",
-      "request": {
-        "method": "PUT",
-        "header": [
-          {
-            "key": "Content-Type",
-            "value": "application/json"
+        {
+          "name": "Get Character by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/characters/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters", "1"] }
           }
-        ],
-        "body": {
-          "mode": "raw",
-          "raw": "{\n    \"name\": \"Partaqlus Half-Blood\",\n    \"title\": \"Primarch\",\n    \"race\": \"Astartes\",\n    \"faction\": \"Archangels\",\n    \"psyker\": true,\n    \"status\": \"Wounded\",\n    \"placement_id\": 1,\n    \"gear_id\": 1\n}"
         },
-        "url": {
-          "raw": "http://localhost:5000/characters/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["characters", "1"]
+        {
+          "name": "Create New Character",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Partaqlus Half-Blood\",\n    \"title\": \"Primarch\",\n    \"race\": \"Astartes\",\n    \"faction\": \"Archangels\",\n    \"psyker\": true,\n    \"status\": \"Active\",\n    \"placement_id\": 1,\n    \"gear_id\": 1\n}"
+            },
+            "url": { "raw": "http://localhost:5000/characters", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters"] }
+          }
+        },
+        {
+          "name": "Update Character by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Partaqlus Half-Blood\",\n    \"title\": \"Primarch\",\n    \"race\": \"Astartes\",\n    \"faction\": \"Archangels\",\n    \"psyker\": true,\n    \"status\": \"Wounded\",\n    \"placement_id\": 1,\n    \"gear_id\": 1\n}"
+            },
+            "url": { "raw": "http://localhost:5000/characters/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters", "1"] }
+          }
+        },
+        {
+          "name": "Delete Character by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/characters/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters", "1"] }
+          }
         }
-      }
+      ]
     },
     {
-      "name": "Delete Character by ID",
-      "request": {
-        "method": "DELETE",
-        "header": [],
-        "url": {
-          "raw": "http://localhost:5000/characters/1",
-          "protocol": "http",
-          "host": ["localhost"],
-          "port": "5000",
-          "path": ["characters", "1"]
+      "name": "Placement",
+      "item": [
+        {
+          "name": "Get all Placements",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/placement", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["placement"] }
+          }
+        },
+        {
+          "name": "Get Placement by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/placement/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["placement", "1"] }
+          }
+        },
+        {
+          "name": "Create New Placement",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"company\": \"1st Company\",\n    \"squad\": \"Angelic Swords\",\n    \"specialization\": \"Assault\",\n    \"nr_missions\": 5\n}"
+            },
+            "url": { "raw": "http://localhost:5000/placement", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["placement"] }
+          }
+        },
+        {
+          "name": "Update Placement by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"company\": \"1st Company\",\n    \"squad\": \"Angelic Swords\",\n    \"specialization\": \"Veteran Assault\",\n    \"nr_missions\": 6\n}"
+            },
+            "url": { "raw": "http://localhost:5000/placement/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["placement", "1"] }
+          }
+        },
+        {
+          "name": "Delete Placement by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/placement/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["placement", "1"] }
+          }
         }
-      }
+      ]
+    },
+    {
+      "name": "Gears",
+      "item": [
+        {
+          "name": "Get all Gears",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/gears", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears"] }
+          }
+        },
+        {
+          "name": "Get Gear by ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/gears/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears", "1"] }
+          }
+        },
+        {
+          "name": "Create New Gear",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Sergeant's Loadout\",\n    \"weapons\": \"Power Sword, Bolt Pistol\",\n    \"armors\": \"MKVI Power Armor\",\n    \"special_equipment\": \"Jump Pack\",\n    \"relics_artifacts\": \"Halo of the Primarch\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/gears", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears"] }
+          }
+        },
+        {
+          "name": "Update Gear by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Terminator Loadout\",\n    \"weapons\": \"Power Fist, Storm Bolter\",\n    \"armors\": \"Cataphractii Terminator Armor\",\n    \"special_equipment\": \"Teleport Homer\",\n    \"relics_artifacts\": \"Crux Terminatus\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/gears/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears", "1"] }
+          }
+        },
+        {
+          "name": "Delete Gear by ID",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "http://localhost:5000/gears/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears", "1"] }
+          }
+        }
+      ]
     }
   ]
 }

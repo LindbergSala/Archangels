@@ -3,6 +3,7 @@ const cors = require('cors');
 require('dotenv').config();
 const charactersRouter = require('./routes/characters');
 const placementRouter = require('./routes/placement');
+const gearRouter = require('./routes/gear');
 const pool = require('./db');
 
 const app = express();
@@ -12,6 +13,7 @@ app.use(express.json());
 // Koppla routern till din endpoint
 app.use('/characters', charactersRouter);
 app.use('/placement', placementRouter);
+app.use('/gears', gearRouter);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
