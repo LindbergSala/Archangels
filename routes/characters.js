@@ -65,4 +65,35 @@ router.delete('/:id', async (req, res) => {
   }
 });
 
+// GET detailed character info by ID (inklusive placement och gear)
+router.get('/:id/details', async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT
+          c.*,
+          p.company AS placement_company,
+          p.squad AS placement_squad,
+          p.specialization AS placement_specialization,
+          p.nr_missions AS placement_nr_missions,
+          g.name AS gear_name,
+          g.weapons AS gear_weapons,
+          g.armors AS gear_armors,
+          g.special_equipment AS gear_special_equipment,
+          g.relics_artifacts AS gear_relics_artifacts
+        FROM characters c
+        LEFT JOIN placement p ON c.placement_id = p.id
+        LEFT JOIN gears g ON c.gear_id = g.id
+        WHERE c.id = $1`,
+      [req.params.id]
+    );
+
+    if (result.rows.length === 0) return res.status(404).json({ error: "Not found" });
+
+    res.json(result.rows[0]);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+
 module.exports = router;
