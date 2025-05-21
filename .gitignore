@@ -3,15 +3,34 @@ node_modules/
 
 # Miljövariabler
 .env
+.env.*   # T.ex. .env.production, .env.local
 
 # Loggar
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
-# OS-filer
+# OS-specifika filer
 .DS_Store
 Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# IDE/editor-filer
+.vscode/
+.idea/
+*.sublime-workspace
+*.sublime-project
+
+# Coverage (om du kör tester)
+coverage/
+*.lcov
+
+# Build output
+dist/
+build/
 
 # Eventuella databackups eller dumpfiler
 *.sql
@@ -19,3 +38,27 @@ Thumbs.db
 
 # Postman collections (om du vill exkludera)
 a-p.json
+*.postman_collection.json
+
+# Video/ljud-inspelningar och stora mediafiler
+*.mp4
+*.wav
+*.avi
+
+# Mac-specifika
+._*
+
+# Komprimerade filer
+*.zip
+*.tar
+*.gz
+*.7z
+*.rar
+
+# Lokala runtimefiler
+*.pid
+
+# npm package locks (om du vill exkludera andra än din egen)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
