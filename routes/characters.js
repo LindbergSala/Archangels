@@ -94,4 +94,29 @@ router.get('/:id/details', async (req, res) => {
   }
 });
 
+router.get('/details/all', async (req, res) => {
+  try {
+    const result = await pool.query(
+      `SELECT
+          c.*,
+          s.company AS squad_company,
+          s.name AS squad_name,
+          s.specialization AS squad_specialization,
+          s.nr_missions AS squad_nr_missions,
+          g.name AS gear_name,
+          g.weapons AS gear_weapons,
+          g.armors AS gear_armors,
+          g.special_equipment AS gear_special_equipment,
+          g.relics_artifacts AS gear_relics_artifacts
+        FROM characters c
+        LEFT JOIN squads s ON c.squad_id = s.id
+        LEFT JOIN gears g ON c.gear_id = g.id
+        ORDER BY c.id`
+    );
+    res.json(result.rows);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
 module.exports = router;

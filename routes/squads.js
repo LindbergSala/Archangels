@@ -80,10 +80,10 @@ router.get('/:id/characters', async (req, res) => {
   }
 });
 
-// GET detaljerad squad-info (inklusive gear och lista på medlemmar)
+// GET detaljerad squad-info (inklusive gear, lista på medlemmar och deras missions)
 router.get('/:id/details', async (req, res) => {
   try {
-    // Först: hämta squad + gear
+    // Hämta squad + gear
     const squadResult = await pool.query(
       `SELECT 
         s.*, 
@@ -99,18 +99,34 @@ router.get('/:id/details', async (req, res) => {
     );
 
     if (squadResult.rows.length === 0) return res.status(404).json({ error: "Not found" });
+    const squadInfo = squadResult.rows[0];
 
-    // Sen: hämta alla karaktärer i squaden
+    // Hämta alla karaktärer i squaden
     const membersResult = await pool.query(
       `SELECT id, name, title, race, faction, psyker, status, gear_id, specializt
        FROM characters
        WHERE squad_id = $1`,
       [req.params.id]
     );
+    const members = membersResult.rows;
 
-    // Bygg svar: squadinfo + array av members
-    const squadInfo = squadResult.rows[0];
-    squadInfo.members = membersResult.rows; // Lägg till en members-array
+    // Hämta alla missions för denna squad
+    const missionsResult = await pool.query(
+      `SELECT m.*
+       FROM squad_missions sm
+       JOIN missions m ON sm.mission_id = m.id
+       WHERE sm.squad_id = $1`,
+      [req.params.id]
+    );
+    const missions = missionsResult.rows;
+
+    // Lägg till missions till varje medlem (alla får samma missions)
+    for (let member of members) {
+      member.missions = missions;
+    }
+
+    // Lägg till en members-array på squadInfo
+    squadInfo.members = members;
 
     res.json(squadInfo);
 
@@ -118,5 +134,6 @@ router.get('/:id/details', async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
 
 module.exports = router;

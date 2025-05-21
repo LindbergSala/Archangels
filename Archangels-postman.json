@@ -1,8 +1,8 @@
 {
   "info": {
-    "name": "A-P",
-    "_postman_id": "a1e7c9c7-3f60-4f20-b312-archangels006",
-    "description": "CRUD för Characters (med specializt & nullable squad_id), Gears och Squads.",
+    "name": "Archangels Warhammer Heresy API",
+    "_postman_id": "archangels-complete-collection-001",
+    "description": "Full CRUD & relation endpoints for all Warhammer Archangels API resources.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -11,45 +11,22 @@
       "item": [
         {
           "name": "Get all Characters",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:5000/characters",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["characters"]
-            }
-          }
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/characters", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters"] } }
         },
         {
           "name": "Get Character by ID",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:5000/characters/1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["characters", "1"]
-            }
-          }
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/characters/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters", "1"] } }
         },
         {
           "name": "Get Character Details by ID",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:5000/characters/1/details",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["characters", "1", "details"]
-            }
-          }
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/characters/1/details", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters", "1", "details"] } }
         },
         {
-          "name": "Create New Character (specializt, optional squad_id)",
+          "name": "Get All Characters with Squad & Gear Details",
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/characters/details/all", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters", "details", "all"] } }
+        },
+        {
+          "name": "Create New Character",
           "request": {
             "method": "POST",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -57,17 +34,11 @@
               "mode": "raw",
               "raw": "{\n  \"name\": \"Androsia Fireborne\",\n  \"title\": \"Chief Librarian\",\n  \"race\": \"Astartes\",\n  \"faction\": \"Archangels\",\n  \"psyker\": true,\n  \"status\": \"Active\",\n  \"squad_id\": null,\n  \"gear_id\": 2,\n  \"specializt\": \"Psyker, Keeper of Lore\"\n}"
             },
-            "url": {
-              "raw": "http://localhost:5000/characters",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["characters"]
-            }
+            "url": { "raw": "http://localhost:5000/characters", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters"] }
           }
         },
         {
-          "name": "Update Character by ID (specializt, optional squad_id)",
+          "name": "Update Character by ID",
           "request": {
             "method": "PUT",
             "header": [{ "key": "Content-Type", "value": "application/json" }],
@@ -75,107 +46,12 @@
               "mode": "raw",
               "raw": "{\n  \"name\": \"Androsia Fireborne\",\n  \"title\": \"Chief Librarian\",\n  \"race\": \"Astartes\",\n  \"faction\": \"Archangels\",\n  \"psyker\": true,\n  \"status\": \"Wounded\",\n  \"squad_id\": null,\n  \"gear_id\": 2,\n  \"specializt\": \"Master Psyker, Keeper of Lore\"\n}"
             },
-            "url": {
-              "raw": "http://localhost:5000/characters/1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["characters", "1"]
-            }
+            "url": { "raw": "http://localhost:5000/characters/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters", "1"] }
           }
         },
         {
           "name": "Delete Character by ID",
-          "request": {
-            "method": "DELETE",
-            "url": {
-              "raw": "http://localhost:5000/characters/1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["characters", "1"]
-            }
-          }
-        }
-      ]
-    },
-    {
-      "name": "Gears",
-      "item": [
-        {
-          "name": "Get all Gears",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:5000/gears",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["gears"]
-            }
-          }
-        },
-        {
-          "name": "Get Gear by ID",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:5000/gears/1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["gears", "1"]
-            }
-          }
-        },
-        {
-          "name": "Create New Gear",
-          "request": {
-            "method": "POST",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Sergeant's Loadout\",\n  \"weapons\": \"Power Sword, Bolt Pistol\",\n  \"armors\": \"MKVI Power Armor\",\n  \"special_equipment\": \"Jump Pack\",\n  \"relics_artifacts\": \"Halo of the Primarch\"\n}"
-            },
-            "url": {
-              "raw": "http://localhost:5000/gears",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["gears"]
-            }
-          }
-        },
-        {
-          "name": "Update Gear by ID",
-          "request": {
-            "method": "PUT",
-            "header": [{ "key": "Content-Type", "value": "application/json" }],
-            "body": {
-              "mode": "raw",
-              "raw": "{\n  \"name\": \"Terminator Loadout\",\n  \"weapons\": \"Power Fist, Storm Bolter\",\n  \"armors\": \"Cataphractii Terminator Armor\",\n  \"special_equipment\": \"Teleport Homer\",\n  \"relics_artifacts\": \"Crux Terminatus\"\n}"
-            },
-            "url": {
-              "raw": "http://localhost:5000/gears/1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["gears", "1"]
-            }
-          }
-        },
-        {
-          "name": "Delete Gear by ID",
-          "request": {
-            "method": "DELETE",
-            "url": {
-              "raw": "http://localhost:5000/gears/1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["gears", "1"]
-            }
-          }
+          "request": { "method": "DELETE", "url": { "raw": "http://localhost:5000/characters/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["characters", "1"] } }
         }
       ]
     },
@@ -184,27 +60,30 @@
       "item": [
         {
           "name": "Get all Squads",
-          "request": {
-            "method": "GET",
-            "url": {
-              "raw": "http://localhost:5000/squads",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["squads"]
-            }
-          }
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/squads", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["squads"] } }
         },
         {
           "name": "Get Squad by ID",
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/squads/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["squads", "1"] } }
+        },
+        {
+          "name": "Get Characters in Squad",
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/squads/1/characters", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["squads", "1", "characters"] } }
+        },
+        {
+          "name": "Get Squad Details (with Gear & Members)",
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/squads/1/details", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["squads", "1", "details"] } }
+        },
+        {
+          "name": "Get Squad with Missions",
           "request": {
             "method": "GET",
             "url": {
-              "raw": "http://localhost:5000/squads/1",
+              "raw": "http://localhost:5000/squads/1/missions",
               "protocol": "http",
               "host": ["localhost"],
               "port": "5000",
-              "path": ["squads", "1"]
+              "path": ["squads", "1", "missions"]
             }
           }
         },
@@ -217,13 +96,7 @@
               "mode": "raw",
               "raw": "{\n  \"name\": \"Paladins\",\n  \"company\": \"1st Company\",\n  \"specialization\": \"Terminator Assault\",\n  \"gear_id\": 1,\n  \"nr_missions\": 37\n}"
             },
-            "url": {
-              "raw": "http://localhost:5000/squads",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["squads"]
-            }
+            "url": { "raw": "http://localhost:5000/squads", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["squads"] }
           }
         },
         {
@@ -235,38 +108,299 @@
               "mode": "raw",
               "raw": "{\n  \"name\": \"Paladins\",\n  \"company\": \"1st Company\",\n  \"specialization\": \"Terminator Assault\",\n  \"gear_id\": 1,\n  \"nr_missions\": 38\n}"
             },
-            "url": {
-              "raw": "http://localhost:5000/squads/1",
-              "protocol": "http",
-              "host": ["localhost"],
-              "port": "5000",
-              "path": ["squads", "1"]
-            }
+            "url": { "raw": "http://localhost:5000/squads/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["squads", "1"] }
           }
         },
         {
           "name": "Delete Squad by ID",
+          "request": { "method": "DELETE", "url": { "raw": "http://localhost:5000/squads/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["squads", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "Gears",
+      "item": [
+        {
+          "name": "Get all Gears",
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/gears", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears"] } }
+        },
+        {
+          "name": "Get Gear by ID",
+          "request": { "method": "GET", "url": { "raw": "http://localhost:5000/gears/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears", "1"] } }
+        },
+        {
+          "name": "Create New Gear",
           "request": {
-            "method": "DELETE",
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Sergeant's Loadout\",\n  \"weapons\": \"Power Sword, Bolt Pistol\",\n  \"armors\": \"MKVI Power Armor\",\n  \"special_equipment\": \"Jump Pack\",\n  \"relics_artifacts\": \"Halo of the Primarch\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/gears", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears"] }
+          }
+        },
+        {
+          "name": "Update Gear by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Terminator Loadout\",\n  \"weapons\": \"Power Fist, Storm Bolter\",\n  \"armors\": \"Cataphractii Terminator Armor\",\n  \"special_equipment\": \"Teleport Homer\",\n  \"relics_artifacts\": \"Crux Terminatus\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/gears/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears", "1"] }
+          }
+        },
+        {
+          "name": "Delete Gear by ID",
+          "request": { "method": "DELETE", "url": { "raw": "http://localhost:5000/gears/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["gears", "1"] } }
+        }
+      ]
+    },
+    {
+      "name": "Elite Units",
+      "item": [
+        { "name": "Get all Elite Units", "request": { "method": "GET", "url": { "raw": "http://localhost:5000/elite_units", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["elite_units"] } } },
+        { "name": "Get Elite Unit by ID", "request": { "method": "GET", "url": { "raw": "http://localhost:5000/elite_units/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["elite_units", "1"] } } },
+        {
+          "name": "Create New Elite Unit",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit_name\": \"Angelii Vindictae\",\n  \"captain\": \"Uriel Firstborn\",\n  \"specialization\": \"Terminator Assault\",\n  \"unique_gear\": \"Relic Blade, Storm Shield\",\n  \"nr_missions\": 25\n}"
+            },
+            "url": { "raw": "http://localhost:5000/elite_units", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["elite_units"] }
+          }
+        },
+        {
+          "name": "Update Elite Unit by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"unit_name\": \"Angelii Vindictae\",\n  \"captain\": \"Uriel Firstborn\",\n  \"specialization\": \"Terminator Assault\",\n  \"unique_gear\": \"Relic Blade, Storm Shield, Teleport Homer\",\n  \"nr_missions\": 26\n}"
+            },
+            "url": { "raw": "http://localhost:5000/elite_units/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["elite_units", "1"] }
+          }
+        },
+        { "name": "Delete Elite Unit by ID", "request": { "method": "DELETE", "url": { "raw": "http://localhost:5000/elite_units/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["elite_units", "1"] } } }
+      ]
+    },
+    {
+      "name": "Factions",
+      "item": [
+        { "name": "Get all Factions", "request": { "method": "GET", "url": { "raw": "http://localhost:5000/factions", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["factions"] } } },
+        { "name": "Get Faction by ID", "request": { "method": "GET", "url": { "raw": "http://localhost:5000/factions/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["factions", "1"] } } },
+        {
+          "name": "Create New Faction",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Archangels\",\n  \"faction_type\": \"Legion\",\n  \"allegiance\": \"Loyalist\",\n  \"notes\": \"2nd Legiones Astartes, led by Partaqlus\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/factions", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["factions"] }
+          }
+        },
+        {
+          "name": "Update Faction by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Archangels\",\n  \"faction_type\": \"Legion\",\n  \"allegiance\": \"Loyalist\",\n  \"notes\": \"Updated notes\"\n}"
+            },
+            "url": { "raw": "http://localhost:5000/factions/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["factions", "1"] }
+          }
+        },
+        { "name": "Delete Faction by ID", "request": { "method": "DELETE", "url": { "raw": "http://localhost:5000/factions/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["factions", "1"] } } }
+      ]
+    },
+    {
+      "name": "Logs",
+      "item": [
+        { "name": "Get all Logs", "request": { "method": "GET", "url": { "raw": "http://localhost:5000/logs", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["logs"] } } },
+        { "name": "Get Log by ID", "request": { "method": "GET", "url": { "raw": "http://localhost:5000/logs/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["logs", "1"] } } },
+        {
+          "name": "Create New Log",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entry_date\": \"03015-04-19\",\n  \"entry_title\": \"After the Purgation\",\n  \"entry_text\": \"The world is silent but for the hymns of the victorious.\",\n  \"related_mission_id\": 1\n}"
+            },
+            "url": { "raw": "http://localhost:5000/logs", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["logs"] }
+          }
+        },
+        {
+          "name": "Update Log by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"entry_date\": \"03015-04-19\",\n  \"entry_title\": \"After the Purgation (Updated)\",\n  \"entry_text\": \"The world is silent but for the hymns of the victorious. New info.\",\n  \"related_mission_id\": 1\n}"
+            },
+            "url": { "raw": "http://localhost:5000/logs/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["logs", "1"] }
+          }
+        },
+        { "name": "Delete Log by ID", "request": { "method": "DELETE", "url": { "raw": "http://localhost:5000/logs/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["logs", "1"] } } }
+      ]
+    },
+    {
+      "name": "Psychic Powers",
+      "item": [
+        { "name": "Get all Psychic Powers", "request": { "method": "GET", "url": { "raw": "http://localhost:5000/psychic_powers", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["psychic_powers"] } } },
+        { "name": "Get Psychic Power by ID", "request": { "method": "GET", "url": { "raw": "http://localhost:5000/psychic_powers/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["psychic_powers", "1"] } } },
+        {
+          "name": "Create New Psychic Power",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"power_name\": \"Radiant Flame\",\n  \"description\": \"Unleash blinding psychic fire to purge enemies.\",\n  \"type\": \"Offensive\",\n  \"character_id\": 2\n}"
+            },
+            "url": { "raw": "http://localhost:5000/psychic_powers", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["psychic_powers"] }
+          }
+        },
+        {
+          "name": "Update Psychic Power by ID",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"power_name\": \"Radiant Flame\",\n  \"description\": \"Unleash blinding psychic fire to purge enemies. (Updated)\",\n  \"type\": \"Offensive\",\n  \"character_id\": 2\n}"
+            },
+            "url": { "raw": "http://localhost:5000/psychic_powers/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["psychic_powers", "1"] }
+          }
+        },
+        { "name": "Delete Psychic Power by ID", "request": { "method": "DELETE", "url": { "raw": "http://localhost:5000/psychic_powers/1", "protocol": "http", "host": ["localhost"], "port": "5000", "path": ["psychic_powers", "1"] } } }
+      ]
+    },
+    {
+      "name": "Missions",
+      "item": [
+        {
+          "name": "Get all Missions",
+          "request": {
+            "method": "GET",
             "url": {
-              "raw": "http://localhost:5000/squads/1",
+              "raw": "http://localhost:5000/missions",
               "protocol": "http",
               "host": ["localhost"],
               "port": "5000",
-              "path": ["squads", "1"]
+              "path": ["missions"]
             }
           }
         },
         {
-          "name": "Get Characters in Squad",
+          "name": "Get Mission by ID",
           "request": {
             "method": "GET",
             "url": {
-              "raw": "http://localhost:5000/squads/1/characters",
+              "raw": "http://localhost:5000/missions/1",
               "protocol": "http",
               "host": ["localhost"],
               "port": "5000",
-              "path": ["squads", "1", "characters"]
+              "path": ["missions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Get Mission Details (with Squads & Gear)",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "http://localhost:5000/missions/1/details",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["missions", "1", "details"]
+            }
+          }
+        },
+        {
+          "name": "Create New Mission",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mission_name\": \"Angels-landing\",\n  \"location\": \"Webway\",\n  \"mission_type\": \"Secure objective\",\n  \"mission_date\": \"~010.M31\",\n  \"outcome\": \"succses\",\n  \"description\": \"Establish a safe zone to use as a base-of-operation\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/missions",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["missions"]
+            }
+          }
+        },
+        {
+          "name": "Update Mission by ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"mission_name\": \"Battle for Solareth\",\n  \"location\": \"Solareth\",\n  \"mission_type\": \"Planetary Assault\",\n  \"mission_date\": \"03100-09-21\",\n  \"outcome\": \"stalemate\",\n  \"description\": \"The battle ended in a stalemate.\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/missions/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["missions", "1"]
+            }
+          }
+        },
+        {
+          "name": "Delete Mission by ID",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://localhost:5000/missions/1",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["missions", "1"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Squad-Missions",
+      "item": [
+        {
+          "name": "Add Squad to Mission",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"squad_id\": 1,\n  \"mission_id\": 1\n}"
+            },
+            "url": {
+              "raw": "http://localhost:5000/squad_missions",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "5000",
+              "path": ["squad_missions"]
             }
           }
         }
